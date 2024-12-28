@@ -7,6 +7,9 @@ export const signup = async (req, res) => {
 
   try {
     // hashing password by using bcrypt
+    if (!fullName || !email || !password) {
+      return res.status(400).json({ message: 'All fields are required !!' });
+    }
     if (password.length < 8) {
       return res.status(400).json({ message: 'Password must contain atleast 8 characters !!' });
     }
