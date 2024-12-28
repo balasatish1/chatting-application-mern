@@ -1,5 +1,30 @@
-export const signup = (req, res) => {
-  res.send('signup route');
+import User from "../models/user.model.js";
+import bcrypt from 'bcryptjs';
+
+export const signup = async (req, res) => {
+  const { fullName, email, password } = req.body;
+  try {
+    // hashing password by using bcrypt
+    if (password.length < 8) {
+      return res.status(400).json({ message: 'Password must contain atleast 8 characters !!' });
+    }
+    const user = await User.findOne({ email });
+    if (user) return res.status(400).json({ message: 'Email already exists !!' });
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new User({
+      fullName,
+      email,
+      password: hashedPassword,
+    });
+
+
+
+  } catch (error) {
+
+  }
 };
 
 export const login = (req, res) => {
