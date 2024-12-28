@@ -21,7 +21,6 @@ export const signup = async (req, res) => {
     });
 
 
-
   } catch (error) {
 
   }
