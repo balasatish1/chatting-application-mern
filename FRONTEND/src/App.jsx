@@ -1,15 +1,27 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom"
+import Navbar from "./components/Navbar.jsx";
+import SignupPage from "./pages/SignupPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import SettingsPage from "./pages/SettingsPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
+
 
 const App = () => {
   return (
-    <div className="text-red-500">
-      <button className="btn">Button</button>
-      <button className="btn btn-neutral">Neutral</button>
-      <button className="btn btn-primary">Primary</button>
-      <button className="btn btn-secondary">Secondary</button>
-      <button className="btn btn-accent">Accent</button>
-      <button className="btn btn-ghost">Ghost</button>
-      <button className="btn btn-link">Link</button>
+    <div >
+
+      <Navbar/>
+
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/signup' element={<SignupPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/settings' element={<SettingsPage />} />
+        <Route path='/profile'  element={<ProfilePage />}/>
+      </Routes>
+
     </div>
   );
 };
