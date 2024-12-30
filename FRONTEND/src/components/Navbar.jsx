@@ -1,8 +1,11 @@
 import { MessageSquare, Settings } from "lucide-react"
 import { NavLink } from "react-router-dom"
+import { useAuthStore } from "../store/useAuth.store.js";
 
 
 const Navbar = () => {
+  const { authUser } = useAuthStore();
+
   return (
     <header
       className="bg-base-100 border-b border-base-300 fixed w-full top-0 z-40 
