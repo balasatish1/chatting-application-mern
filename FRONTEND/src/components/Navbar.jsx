@@ -1,10 +1,10 @@
-import { MessageSquare, Settings } from "lucide-react"
+import { MessageSquare, Settings, LogOut, User } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import { useAuthStore } from "../store/useAuth.store.js";
 
 
 const Navbar = () => {
-  const { authUser } = useAuthStore();
+  const { logout, authUser } = useAuthStore();
 
   return (
     <header
@@ -18,7 +18,7 @@ const Navbar = () => {
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
                 <MessageSquare className="w-5 h-5 text-primary" />
               </div>
-              <h1 className="text-lg font-bold">Chatty</h1>
+              <h1 className="text-lg font-bold">TextFlow</h1>
             </NavLink>
           </div>
 
