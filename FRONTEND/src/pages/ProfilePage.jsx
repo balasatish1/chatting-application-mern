@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuth.store.js"
 import { Camera, User, Mail } from "lucide-react";
+import imageCompression from 'browser-image-compression';
 
 
 const ProfilePage = () => {
@@ -10,12 +11,18 @@ const ProfilePage = () => {
   const handleImageUpload = async (e) => {
 
     const file = e.target.files[0];
-
     if (!file) return;
 
-    const reader = new FileReader();
+    const options = {
+      maxSizeMB: 0.07,
+      maxWidthOrHeight: 1024,
+      useWebWorker: true,
+    };
 
-    reader.readAsDataURL(file);
+    const compressedFile = await imageCompression(file, options);
+  
+    const reader = new FileReader();
+    reader.readAsDataURL(compressedFile);
 
     reader.onload = async () => {
       const base64Image = reader.result;
