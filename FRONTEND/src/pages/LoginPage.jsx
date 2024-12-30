@@ -8,8 +8,8 @@ import { MessageSquare, Mail, Lock, EyeOff, Eye, Loader2 } from 'lucide-react';
 const LoginPage = () => {
 
   const { login, isLoggingIn } = useAuthStore();
-  const [ showPassword, setShowPassword ] = useState(false);
-  const [ formData, setFormData ] = useState({
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
