@@ -11,6 +11,11 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ['light', 'dark', 'cupcake'], // Add the themes you want to use
+    themes: [
+      'light',
+      'dark',
+      'cupcake',
+      'retro'
+    ],
   },
 }
