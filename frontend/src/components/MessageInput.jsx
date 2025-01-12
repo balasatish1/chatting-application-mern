@@ -13,6 +13,7 @@ const MessageInput = () => {
   const { sendMessage } = useChatStore();
 
   const handleImageChange = async (e) => {
+    e.preventDefault();
     const file = e.target.files[0];
 
     if (!file) return;
