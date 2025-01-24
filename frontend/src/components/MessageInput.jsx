@@ -5,10 +5,10 @@ import toast from "react-hot-toast";
 import imageCompression from 'browser-image-compression';
 
 
-const MessageInput = () => {
+const MessageInput = ({ setIsUserTyping }) => {
 
-  const [ text, setText ] = useState('');
-  const [ imagePreview, setImagePreview ] = useState(null);
+  const [text, setText] = useState('');
+  const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
   const { sendMessage } = useChatStore();
 
@@ -17,7 +17,7 @@ const MessageInput = () => {
     const file = e.target.files[0];
 
     if (!file) return;
-    
+
     if (!file.type.startsWith("image/")) {
       toast.error("Please select and image file !!");
       return;
@@ -70,6 +70,15 @@ const MessageInput = () => {
 
   };
 
+  const handleMessageInputChange = (e) => {
+    setText(e.target.value);
+    if (e.target.value.trim()) {
+      setIsUserTyping(true);
+    } else {
+      setIsUserTyping(false)
+    }
+  }
+
 
   return (
     <div className="p-4 w-full">
@@ -100,7 +109,7 @@ const MessageInput = () => {
             className="w-full input input-bordered rounded-lg input-sm sm:input-md"
             placeholder="Type a message..."
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={handleMessageInputChange}
           />
           <input
             type="file"

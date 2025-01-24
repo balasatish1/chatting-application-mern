@@ -1,6 +1,6 @@
 import { useAuthStore } from "../store/useAuth.store";
 import { useChatStore } from "../store/useChatStore";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import ChatHeader from "./ChatHeader.jsx";
 import MessageInput from "./MessageInput.jsx";
 import MessageSkeleton from "./skeletons/MessageSkeleton.jsx";
@@ -11,6 +11,8 @@ const ChatSelected = () => {
     useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
+  const [isUserTyping, setIsUserTyping] = useState(false);
+
 
   useEffect(() => {
     getMessages(selectedUser._id);
@@ -18,13 +20,13 @@ const ChatSelected = () => {
     subscribeToMessages();
 
     return () => unSubscribeToMessages();
-    
+
   }, [selectedUser._id, getMessages, subscribeToMessages, unSubscribeToMessages]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
-    messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
+      messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages]);
 
   if (isMessagesLoading) {
@@ -45,9 +47,8 @@ const ChatSelected = () => {
         {messages.map((message) => (
           <div
             key={message._id}
-            className={`chat ${
-              message.senderId === authUser._id ? "chat-end" : "chat-start"
-            }`}
+            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"
+              }`}
             ref={messageEndRef}
           >
             <div className=" chat-image avatar">
@@ -82,9 +83,10 @@ const ChatSelected = () => {
 
           </div>
         ))}
+        {/* {isUserTyping && <div>Typing....</div>} */}
       </div>
 
-      <MessageInput />
+      <MessageInput setIsUserTyping={setIsUserTyping} />
     </div>
   );
 };
