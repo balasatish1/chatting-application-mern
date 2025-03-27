@@ -19,7 +19,7 @@ const MessageInput = () => {
     if (!file) return;
     
     if (!file.type.startsWith("image/")) {
-      toast.error("Please select and image file !!");
+      toast.error("Please select an image file !!");
       return;
     }
     const options = {
