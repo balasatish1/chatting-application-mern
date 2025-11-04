@@ -90,7 +90,7 @@ Once both the **backend** and **frontend** are running successfully, you’ll se
 #### 🧠 Backend Output
 - **In Terminal 2 (Backend):**
   ```bash
-  Server running on port 5000
+  Server running on port 5001
   Connected to MongoDB Atlas
 - **In Terminal 1 (Frontend):**
   ```bash
